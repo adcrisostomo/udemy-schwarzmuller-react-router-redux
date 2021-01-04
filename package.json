@@ -5,7 +5,7 @@
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "1.1.5"
+    "react-scripts": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -13,17 +13,16 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
-  "main": "index.js",
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aldycrisostomo/udemy-schwarzmuller-react-router-redux.git"
-  },
-  "author": "aldycrisostomo",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/aldycrisostomo/udemy-schwarzmuller-react-router-redux/issues"
-  },
-  "homepage": "https://github.com/aldycrisostomo/udemy-schwarzmuller-react-router-redux#readme"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
