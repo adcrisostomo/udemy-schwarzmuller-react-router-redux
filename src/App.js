@@ -62,7 +62,8 @@ class App extends Component {
   render() {
     // inline styling
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -85,6 +86,9 @@ class App extends Component {
           })}
         </div>
        )
+
+      // change button color to red upon showing Persons
+       style.backgroundColor = 'red'
     }
 
     return (
