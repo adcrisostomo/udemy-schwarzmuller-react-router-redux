@@ -54,24 +54,24 @@ class App extends Component {
         }
     */
 
-  nameChangedHandler = (event, id) => {
-    const personIndex = this.state.persons.findIndex(person => {
-      return person.id === id
-    })
+    nameChangedHandler = (event, id) => {
+        const personIndex = this.state.persons.findIndex(person => {
+        return person.id === id
+        })
 
-    const person = { ...this.state.persons[personIndex] }
-    // or...
-    // const person = Object.assig({}, this.state.persons[personIndex])
+        const person = { ...this.state.persons[personIndex] }
+        // or...
+        // const person = Object.assig({}, this.state.persons[personIndex])
 
-    person.name = event.target.value
+        person.name = event.target.value
 
-    const persons = [ ...this.state.persons ]
-    persons[personIndex] = person
+        const persons = [ ...this.state.persons ]
+        persons[personIndex] = person
 
-    this.setState({
-      persons: persons
-    })
-  }
+        this.setState({
+        persons: persons
+        })
+    }
 
     deletePersonHandler = (personIndex) => {
         // this safely copies values of persons to const persons
