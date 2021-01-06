@@ -12,42 +12,47 @@ import Persons from '../components/Persons/Persons'
 
 // 3) styled-component
 /* const StyledButton = styled.button`
-  background-color: ${props => props.alt === 'true' ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
+    background-color: ${props => props.alt === 'true' ? 'red' : 'green'};
+    color: white;
+    font: inherit;
+    border: 1px solid blue;
+    padding: 8px;
+    cursor: pointer;
 
-  &:hover {
+    &:hover {
     background-color: ${props => props.alt === 'true' ? 'salmon' : 'lightgreen'};
     color: black;
-  }
+}
 ` */
 
 class App extends Component {
-  state = {
-    persons: [
-      { id: 'asdas1443', name: 'Max', age : 28 },
-      { id: '12fwe1233', name: 'Manu', age : 29 },
-      { id: 'qas23df32', name: 'Stephanie', age : 26 },
-    ],
-    otherState: 'some other value',
-    showPersons: false
-  }
+    constructor (props) {
+        super(props)
+        console.log('[App.js] constructor')
+    }
 
-/*   switchNameHandler = (newName) => {
-    // DON'T DO THIS...
-    // this.state.persons[0].name = 'Maximilian'
-    this.setState({
-      persons: [
-        { name: newName, age: 28 },
-        { name: 'Manu', age: 29 },
-        { name: 'Stephanie', age: 27 },
-      ]
-    })
-  }
- */
+    state = {
+            persons: [
+                { id: 'asdas1443', name: 'Max', age : 28 },
+                { id: '12fwe1233', name: 'Manu', age : 29 },
+                { id: 'qas23df32', name: 'Stephanie', age : 26 },
+            ],
+            otherState: 'some other value',
+            showPersons: false
+    }
+
+    /*   switchNameHandler = (newName) => {
+            // DON'T DO THIS...
+            // this.state.persons[0].name = 'Maximilian'
+            this.setState({
+            persons: [
+                { name: newName, age: 28 },
+                { name: 'Manu', age: 29 },
+                { name: 'Stephanie', age: 27 },
+            ]
+            })
+        }
+    */
 
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(person => {
@@ -68,62 +73,62 @@ class App extends Component {
     })
   }
 
-  deletePersonHandler = (personIndex) => {
-    // this safely copies values of persons to const persons
-    // const persons = this.state.persons.slice()
-    // this is same as above (in ES6 syntax)
-    const persons =[...this.state.persons]
-    persons.splice(personIndex, 1)
-    this.setState({persons: persons})
-  }
-
-  togglePersonsHandler = () => {
-    const doesShow = this.state.showPersons
-    this.setState({showPersons: !doesShow})
-  }
-
-  render() {
-    // 2) inline styling
-    /* const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    } */
-    let persons = null
-
-    if (this.state.showPersons) {
-        persons = <Persons
-            persons={this.state.persons}
-            clicked={this.deletePersonHandler}
-            changed={this.nameChangedHandler} />
-
-      // change button color to red upon showing Persons
-      /* style.backgroundColor = 'red'
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      } */
+    deletePersonHandler = (personIndex) => {
+        // this safely copies values of persons to const persons
+        // const persons = this.state.persons.slice()
+        // this is same as above (in ES6 syntax)
+        const persons =[...this.state.persons]
+        persons.splice(personIndex, 1)
+        this.setState({persons: persons})
     }
 
-    return (
-      <div className={classes.App}>
-        <Cockpit
-            title={this.props.appTitle}
-            showPersons={this.state.showPersons}
-            persons={this.state.persons}
-            clicked={this.togglePersonsHandler}
-        />
-        {persons}
-      </div>
-    );
-  }
+    togglePersonsHandler = () => {
+        const doesShow = this.state.showPersons
+        this.setState({showPersons: !doesShow})
+    }
+
+    render() {
+        // 2) inline styling
+        /* const style = {
+            backgroundColor: 'green',
+            color: 'white',
+            font: 'inherit',
+            border: '1px solid blue',
+            padding: '8px',
+            cursor: 'pointer',
+            ':hover': {
+            backgroundColor: 'lightgreen',
+            color: 'black'
+            }
+        } */
+        let persons = null
+
+        if (this.state.showPersons) {
+            persons = <Persons
+                persons={this.state.persons}
+                clicked={this.deletePersonHandler}
+                changed={this.nameChangedHandler} />
+
+            // change button color to red upon showing Persons
+            /* style.backgroundColor = 'red'
+                style[':hover'] = {
+                    backgroundColor: 'salmon',
+                    color: 'black'
+                } */
+        }
+
+        return (
+            <div className={classes.App}>
+            <Cockpit
+                title={this.props.appTitle}
+                showPersons={this.state.showPersons}
+                persons={this.state.persons}
+                clicked={this.togglePersonsHandler}
+            />
+            {persons}
+            </div>
+        );
+    }
 }
 
 export default App
