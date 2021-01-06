@@ -1,8 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
+import classes from './Person.module.css'
 
+// styled-component
 // styled.div and everything within `` returns a valid React component
-const StyledDiv = styled.div`
+/* const StyledDiv = styled.div`
     width: 60%;
     margin: 16px auto;
     border: 1px solid #eee;
@@ -13,15 +14,15 @@ const StyledDiv = styled.div`
     @media (min-width: 500px) {
         width: 450px;
     }
-`
+` */
 
 const person = (props) => {
     return (
-        <StyledDiv>
+        <div className={classes.Person}>
             <p onClick={props.click}>I'm { props.name } and I am { props.age } years old!</p>
             <p>{props.children}</p>
             <input type="text" onChange={props.changed} value={props.name} /> {/* React/JS automatically passes event as parameter (ergo a default object) in changed */}
-        </StyledDiv>
+        </div>
     )
 }
 

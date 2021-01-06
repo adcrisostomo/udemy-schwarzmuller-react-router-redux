@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // ReactJS allows 4 ways of styling...
 // 1) Traditional stylesheets
 // 2) Inline styling
-// 3) styled-component (e.g. styled.button`some css props here`)
+// 3) Radium and styled-component (e.g. styled.button`some css props here`)
 // 4) CSS modules (done by running npm run eject)
 import classes from './App.module.css'
 // import styled from 'styled-components'
@@ -47,7 +47,6 @@ class App extends Component {
   }
 
   nameChangedHandler = (event, id) => {
-    console.log('HELLO')
     const personIndex = this.state.persons.findIndex(person => {
       return person.id === id
     })
