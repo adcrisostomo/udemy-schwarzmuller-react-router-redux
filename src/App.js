@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
-import './App.css'
-import styled from 'styled-components'
+// ReactJS allows 4 ways of styling...
+// 1) Traditional stylesheets
+// 2) Inline styling
+// 3) styled-component (e.g. styled.button`some css props here`)
+// 4) CSS modules (done by running npm run eject)
+import classes from './App.module.css'
+// import styled from 'styled-components'
 import Person from './Person/Person'
 
-const StyledButton = styled.button`
+// 3) styled-component
+/* const StyledButton = styled.button`
   background-color: ${props => props.alt === 'true' ? 'red' : 'green'};
   color: white;
   font: inherit;
@@ -15,7 +21,7 @@ const StyledButton = styled.button`
     background-color: ${props => props.alt === 'true' ? 'salmon' : 'lightgreen'};
     color: black;
   }
-`
+` */
 
 class App extends Component {
   state = {
@@ -52,7 +58,7 @@ class App extends Component {
 
     person.name = event.target.value
 
-    const persons = [ ... this.state.persons ]
+    const persons = [ ...this.state.persons ]
     persons[personIndex] = person
 
     this.setState({
@@ -75,8 +81,8 @@ class App extends Component {
   }
 
   render() {
-    // inline styling
-    const style = {
+    // 2) inline styling
+    /* const style = {
       backgroundColor: 'green',
       color: 'white',
       font: 'inherit',
@@ -87,9 +93,9 @@ class App extends Component {
         backgroundColor: 'lightgreen',
         color: 'black'
       }
-    }
-
+    } */
     let persons = null
+    let btnClasses  = ''
 
     if (this.state.showPersons) {
        persons = (
@@ -107,32 +113,35 @@ class App extends Component {
        )
 
       // change button color to red upon showing Persons
-      style.backgroundColor = 'red'
+      /* style.backgroundColor = 'red'
       style[':hover'] = {
         backgroundColor: 'salmon',
         color: 'black'
-      }
+      } */
+
+      btnClasses = classes.Red
     }
 
-    const classes = []
+    const assignedClasses = []
 
     if (this.state.persons.length <= 2) {
-      classes.push('red') // classes = ['red']
+      assignedClasses.push(classes.red) // classes = ['red']
     }
     if (this.state.persons.length <= 1) {
-      classes.push('bold') // classes = ['bold'] or classes = ['red', 'bold']
+      assignedClasses.push(classes.bold) // classes = ['bold'] or classes = ['red', 'bold']
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi, I'm a React App</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
-        <StyledButton
+        <p className={assignedClasses.join(' ')}>This is really working!</p>
+        <button
+          className={btnClasses}
           alt={this.state.showPersons.toString()}
           onClick={this.togglePersonsHandler}
         >
           Toggle Persons
-        </StyledButton>
+        </button>
         {persons}
       </div>
     );
