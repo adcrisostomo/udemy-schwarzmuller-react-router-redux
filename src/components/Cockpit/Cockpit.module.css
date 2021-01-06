@@ -1,0 +1,47 @@
+.red {
+  color: red;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+/*
+For every button tag found within a Cockpit-styled parent element,
+apply these properties
+*/
+.Cockpit button {
+  background-color: green;
+  color: white;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+}
+
+/*
+For every button tag found within a Cockpit-styled parent element,
+on hover, apply these properties
+*/
+.Cockpit button:hover {
+  background-color: lightgreen;
+  color: black;
+}
+
+/*
+For every button tag found within a Cockpit-styled parent element,
+if the button has class Red,
+then apply this property
+*/
+.Cockpit button.Red {
+  background-color: red;
+}
+
+/*
+For every button tag found within a Cockpit-styled parent element,
+if the button has class Red,
+then on hover, apply this property
+*/
+.Cockpit button.Red:hover {
+  background-color: salmon;
+}
