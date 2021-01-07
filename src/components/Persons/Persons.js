@@ -1,16 +1,51 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Person from './Person/Person'
 // import ErrorBoundary from '../containers/ErrorBoundary'
 
-const persons = (props) => props.persons.map((person, index) => { // you get index param for free
-    // return <ErrorBoundary key={person.id}>
-    return <Person
-        click={() => props.clicked(index)}
-        name={person.name}
-        age={person.age}
-        key={person.id}
-        changed={(event) => props.changed(event, person.id)} />
-    // </ErrorBoundary>
-})
+class Persons extends Component {
+    /* UPDATE LIFECYCLE METHODS FOR PROP CHANGES */
 
-export default persons
+    // static getDerivedStateFromProps (props, state) {
+    //     console.log('[Persons.js] getDerivedStateFromProps')
+    //     return state
+    // }
+
+    // deprecated
+    // componentWillReceiveProps (props) {
+    //     console.log('[Persons.js] componentWillReceiveProps, props')        
+    // }
+
+    shouldComponentUpdate (nextProps, nextState) {
+        console.log('[Persons.js] shouldComponentUpdate')
+        return true
+    }
+
+    getSnapshotBeforeUpdate (prevProps, prevState) {
+        console.log('[Persons.js] getSnapshotBeforeUpdate')
+        return { message: 'Snapshot!!!' }
+    }
+
+    componentDidUpdate (prevProps, prevState, snapshot) {
+        console.log('[Persons.js] componentDidUpdate')
+        console.log(snapshot)
+    }
+
+    componentWillUnmount () {
+        console.log('[Persons.js] componentWillUnmount')
+    }
+
+    render () {
+        console.log('[Persons.js] rendering...')
+        return this.props.persons.map((person, index) => { // you get index param for free
+            // return <ErrorBoundary key={person.id}>
+            return <Person
+                click={() => this.props.clicked(index)}
+                name={person.name}
+                age={person.age}
+                key={person.id}
+                changed={(event) => this.props.changed(event, person.id)} />
+            // </ErrorBoundary>
+        })
+    }
+}
+export default Persons

@@ -38,7 +38,33 @@ class App extends Component {
                 { id: 'qas23df32', name: 'Stephanie', age : 26 },
             ],
             otherState: 'some other value',
-            showPersons: false
+            showPersons: false,
+            showCockpit: true
+    }
+
+    static getDerivedStateFromProps (props, state) {
+        console.log('[App.js] getDerivedStateFromProps', props)
+        return state
+    }
+
+    // deprecated
+    // componentWillMount () {
+    //     console.log('[App.js] componentWillMount')
+    // }
+
+    /* UPDATE LIFECYCLE METHODS FOR STATE CHANGES */
+
+    componentDidMount () {
+        console.log('[App.js] componentDidMount')
+    }
+
+    shouldComponentUpdate (nextProps, nextState) {
+        console.log('[App.js] shouldComponentUpdate')
+        return true // required to return boolean value
+    }
+
+    componentDidUpdate () {
+        console.log('[App.js] componentDidUpdate')
     }
 
     /*   switchNameHandler = (newName) => {
@@ -88,6 +114,7 @@ class App extends Component {
     }
 
     render() {
+        console.log('[App.js] render')
         // 2) inline styling
         /* const style = {
             backgroundColor: 'green',
@@ -119,13 +146,22 @@ class App extends Component {
 
         return (
             <div className={classes.App}>
-            <Cockpit
-                title={this.props.appTitle}
-                showPersons={this.state.showPersons}
-                persons={this.state.persons}
-                clicked={this.togglePersonsHandler}
-            />
-            {persons}
+                <button
+                    onClick={() => {
+                        this.setState({ showCockpit: false })
+                    }}
+                >
+                    Remove Cockpit
+                </button>
+                {this.state.showCockpit ? (
+                    <Cockpit
+                        title={this.props.appTitle}
+                        showPersons={this.state.showPersons}
+                        persons={this.state.persons}
+                        clicked={this.togglePersonsHandler}
+                    />
+                ) : null}
+                {persons}
             </div>
         );
     }

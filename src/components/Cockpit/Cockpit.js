@@ -1,7 +1,53 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import classes from './Cockpit.module.css'
 
-const cockpit = (props) => {
+const Cockpit = (props) => {
+    /* EQUIVALENT TO componentDidMount() */
+    /* useEffect(() => {
+        console.log('[Cockpit.js] useEffect')
+        // can have HTTP request here...
+        setTimeout(() => {
+            alert('Saved data to cloud!')
+        }, 1000)
+    }, []) // empty array == no dependencies == no reruns of useEffect() after the 1st run... */
+    
+    /* EQUIVALENT TO componentWillUnmount() */
+    // empty array in 2nd param means run only once
+
+    /* useEffect(() => {
+        console.log('[Cockpit.js] useEffect')
+        // can have HTTP request here...
+        setTimeout(() => {
+            alert('Saved data to cloud!')
+        }, 1000)
+        return () => {
+            console.log('[Cockpit.js] cleanup work in useEffect')
+        }
+    }, []) */
+
+    useEffect(() => {
+        console.log('[Cockpit.js] useEffect')
+        // can have HTTP request here...
+        const timer = setTimeout(() => {
+            alert('Saved data to cloud!')
+        }, 1000)
+        return () => {
+            clearTimeout(timer)
+            console.log('[Cockpit.js] cleanup work in useEffect')
+        }
+    }, [])
+
+    /* EQUIVALENT TO componentWillUnmount() */
+    // no 2nd param means run every render cycle
+    useEffect(() => {
+        console.log('[Cockpit.js] 2nd useEffect')
+        return () => {
+            console.log('[Cockpit.js] cleanup work in 2nd useEffect')
+        }
+    })
+
+    // NOTE: array with elements in 2nd param mean useEffect firing is conditional
+
     const assignedClasses = []
     let btnClass = ''
 
@@ -31,4 +77,4 @@ const cockpit = (props) => {
     )
 }
 
-export default cockpit
+export default Cockpit
