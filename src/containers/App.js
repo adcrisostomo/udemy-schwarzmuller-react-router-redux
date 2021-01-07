@@ -32,14 +32,14 @@ class App extends Component {
     }
 
     state = {
-            persons: [
-                { id: 'asdas1443', name: 'Max', age : 28 },
-                { id: '12fwe1233', name: 'Manu', age : 29 },
-                { id: 'qas23df32', name: 'Stephanie', age : 26 },
-            ],
-            otherState: 'some other value',
-            showPersons: false,
-            showCockpit: true
+        persons: [
+            { id: 'asdas1443', name: 'Max', age : 28 },
+            { id: '12fwe1233', name: 'Manu', age : 29 },
+            { id: 'qas23df32', name: 'Stephanie', age : 26 },
+        ],
+        otherState: 'some other value',
+        showPersons: false,
+        showCockpit: true
     }
 
     static getDerivedStateFromProps (props, state) {
@@ -60,7 +60,7 @@ class App extends Component {
 
     shouldComponentUpdate (nextProps, nextState) {
         console.log('[App.js] shouldComponentUpdate')
-        return true // required to return boolean value
+        return true // required to return a boolean value
     }
 
     componentDidUpdate () {
@@ -95,7 +95,7 @@ class App extends Component {
         persons[personIndex] = person
 
         this.setState({
-        persons: persons
+            persons: persons
         })
     }
 
@@ -103,7 +103,7 @@ class App extends Component {
         // this safely copies values of persons to const persons
         // const persons = this.state.persons.slice()
         // this is same as above (in ES6 syntax)
-        const persons =[...this.state.persons]
+        const persons = [...this.state.persons]
         persons.splice(personIndex, 1)
         this.setState({persons: persons})
     }
