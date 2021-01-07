@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import classes from './Person.module.css'
+import Aux from '../../../hoc/Auxilliary'
 
 // styled-component
 // styled.div and everything within `` returns a valid React component
@@ -20,11 +21,13 @@ class Person extends Component {
     render () {
         console.log('[Person.js] rendering...')
         return (
-            <div className={classes.Person}>
-                <p onClick={this.props.click}>I'm { this.props.name } and I am { this.props.age } years old!</p>
-                <p>{this.props.children}</p>
-                <input type="text" onChange={this.props.changed} value={this.props.name} /> {/* React/JS automatically passes event as parameter (ergo a default object) in changed */}
-            </div>
+            <Aux>
+                {/* // <div className={classes.Person}> */}
+                    <p onClick={this.props.click}>I'm { this.props.name } and I am { this.props.age } years old!</p>
+                    <p>{this.props.children}</p>
+                    <input type="text" onChange={this.props.changed} value={this.props.name} />  {/* React/JS automatically passes event as parameter (ergo a default object) in changed */ }
+                {/* // </div> */}
+            </Aux>
         )
     }
 }
