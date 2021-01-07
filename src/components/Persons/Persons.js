@@ -17,7 +17,14 @@ class Persons extends Component {
 
     shouldComponentUpdate (nextProps, nextState) {
         console.log('[Persons.js] shouldComponentUpdate')
-        return true
+
+        // shouldComponentUpdate() requires us to return a boolean value
+        // this does not deep compare 2 persons, only their memory references
+        if (nextProps.persons !== this.props.persons) {
+            return true
+        } else {
+            return false
+        }
     }
 
     getSnapshotBeforeUpdate (prevProps, prevState) {
