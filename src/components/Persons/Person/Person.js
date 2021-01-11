@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import classes from './Person.module.css'
+// "{ Fragment }" is interchangeable with Aux
 import Aux from '../../../hoc/Auxilliary'
+import withClass from '../../../hoc/withClass'
 
 // styled-component
 // styled.div and everything within `` returns a valid React component
@@ -22,14 +24,14 @@ class Person extends Component {
         console.log('[Person.js] rendering...')
         return (
             <Aux>
-                {/* // <div className={classes.Person}> */}
+                {/* <div className={classes.Person}> */}
                     <p onClick={this.props.click}>I'm { this.props.name } and I am { this.props.age } years old!</p>
                     <p>{this.props.children}</p>
                     <input type="text" onChange={this.props.changed} value={this.props.name} />  {/* React/JS automatically passes event as parameter (ergo a default object) in changed */ }
-                {/* // </div> */}
+                {/* </div> */}
             </Aux>
         )
     }
 }
 
-export default Person
+export default withClass(Person, classes.Person)

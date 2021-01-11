@@ -8,6 +8,8 @@ import React, { Component } from 'react'
 import classes from './App.module.css'
 import Cockpit from '../components/Cockpit/Cockpit'
 import Persons from '../components/Persons/Persons'
+import withClass from '../hoc/withClass'
+import Aux from '../hoc/Auxilliary'
 // import ErrorBoundary from './ErrorBoundary'
 
 // 3) styled-component
@@ -39,7 +41,8 @@ class App extends Component {
         ],
         otherState: 'some other value',
         showPersons: false,
-        showCockpit: true
+        showCockpit: true,
+        changeCounter: 0
     }
 
     static getDerivedStateFromProps (props, state) {
@@ -94,8 +97,12 @@ class App extends Component {
         const persons = [ ...this.state.persons ]
         persons[personIndex] = person
 
-        this.setState({
-            persons: persons
+        // when setting a prop state that depends on previous state, do this
+        this.setState((prevState, props) => {
+            return {
+                persons: persons,
+                changeCounter: prevState.changeCounter + 1
+            }
         })
     }
 
@@ -145,7 +152,7 @@ class App extends Component {
         }
 
         return (
-            <div className={classes.App}>
+            <Aux>
                 <button
                     onClick={() => {
                         this.setState({ showCockpit: false })
@@ -162,9 +169,9 @@ class App extends Component {
                     />
                 ) : null}
                 {persons}
-            </div>
+            </Aux>
         );
     }
 }
 
-export default App
+export default withClass(App, classes.App)
